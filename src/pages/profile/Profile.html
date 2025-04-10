@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/styles.scss">
+    <link rel="stylesheet" href="../../styles/navButton.scss">
+    <link rel="stylesheet" href="../../styles/submitButton.scss">
+    <link rel="stylesheet" href="../../styles/input.scss">
+    <link rel="stylesheet" href="../../styles/line.scss">
+    <link rel="stylesheet" href="./styles.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Профиль</title>
+</head>
+
+<body>
+    <main class="profile-block block-blue">
+        {{> button label='Вернуться назад' className='style-weigth'}}
+        <h1 class="profile-block__title">Профиль</h1>
+
+        <div class="profile-block__avatar-block">
+            <img src="/static/avatar.png" class="profile-block__avatar-block_img" />
+        </div>
+
+        <div class="profile-block__input-form">
+            {{> userInfoItem name="Почта" value=email}}
+            {{> userInfoItem name="Логин" value=login}}
+            {{> userInfoItem name="Имя" value=first_name}}
+            {{> userInfoItem name="Фамилия" value=second_name}}
+            {{> userInfoItem name="Имя в чате" value=display_name}}
+            {{> userInfoItem name="Телефон" value=phone}}
+        </div>
+
+        <div class="profile-block__buttons">
+            {{> button label='Изменить данные' className='style-margin'}}
+            {{> button label='Изменить пароль' className='style-margin'}}
+            {{> button label='Выйти' className='color-red style-margin'}}
+        </div>
+
+    </main>
+</body>
+
+</html>
