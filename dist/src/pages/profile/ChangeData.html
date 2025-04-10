@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Изменение данных</title>
+  <link rel="stylesheet" crossorigin href="/assets/styles-2qk8jRFE.css">
+  <link rel="stylesheet" crossorigin href="/assets/navButton-DNdYSd-V.css">
+  <link rel="stylesheet" crossorigin href="/assets/line-DCG_Y3xn.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-CSdgL6iq.css">
+</head>
+
+<body>
+    <main class="profile-block block-blue">
+        <button class="nav-button style-weigth">Вернуться назад</button>
+        <h1 class="profile-block__title">Изменение данных</h1>
+
+        <div class="profile-block__avatar-block">
+            <img src="data:image/png;base64,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" class="profile-block__avatar-block_img" />
+        </div>
+
+        <form class="profile-block__form">
+
+            <div class="profile-block__input-form">
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="email">Почта</label>
+                        <input type="text"  name="email" class="block-input__field" placeholder="pochta@yandex.ru" >
+                    </div>
+                    <hr class="line" />
+                </div>
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="login">Логин</label>
+                        <input type="text"  name="login" class="block-input__field" placeholder="ivanivanov" >
+                    </div>
+                    <hr class="line" />
+                </div>
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="first_name">Имя</label>
+                        <input type="text"  name="first_name" class="block-input__field" placeholder="Иван" >
+                    </div>
+                    <hr class="line" />
+                </div>
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="second_name">Фамилия</label>
+                        <input type="text"  name="second_name" class="block-input__field" placeholder="Иванов" >
+                    </div>
+                    <hr class="line" />
+                </div>
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="display_name">Имя в чате</label>
+                        <input type="test"  name="display_name" class="block-input__field" placeholder="Иван" >
+                    </div>
+                    <hr class="line" />
+                </div>
+                <div class="block-input">
+                    <div class="block-input__wrapper">
+                        <label class="block-input__label" for="phone">Телефон</label>
+                        <input type="tel"  name="phone" class="block-input__field" placeholder="+7 (999) 999 99 99" >
+                    </div>
+                    <hr class="line" />
+                </div>
+            </div>
+
+            <button class="submit-button " type="submit" >Сохранить</button>
+        </form>
+    </main>
+</body>
+
+</html>
