@@ -2,11 +2,11 @@
   display: inline-block;
   font-size: 13px;
   font-family: 500;
-  color: #367EDB;
+  color: var(--primary);
   text-decoration: none;
   text-align: center;
   &:hover {
-    color: var(#3369F3);
+    color: var(--primary);
     text-decoration: underline;
   }
 }

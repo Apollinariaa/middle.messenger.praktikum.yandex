@@ -1,8 +1,8 @@
 .block-blue {
     padding: 56px 42px;
     border-radius: 10px;
-    background-color: #FFFFFF;
-    border: 1px solid #367EDB;
+    background-color: var(--while);
+    border: 1px solid var(--primary);
     text-align: center;
 }
 
@@ -46,6 +46,15 @@ button {
   border: none;
   background: none;
   cursor: pointer;
+}
+
+:root {
+  --black: #000000;
+  --while: #FFFFFF;
+  --primary: #367EDB;
+  --primary-hover: #3369F3;
+  --grey: #999999;
+  --red: #ff0000;
 }
 
 body {
