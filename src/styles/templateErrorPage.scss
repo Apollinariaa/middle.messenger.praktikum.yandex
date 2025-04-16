@@ -1,0 +1,11 @@
+.error-page {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  &__title {
+      margin-bottom: 7px;
+  }
+  &__comment {
+      margin-bottom: 28px;
+  }
+}
