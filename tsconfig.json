@@ -20,6 +20,6 @@
     "declaration": false,
     "strictNullChecks": true,
     "sourceMap": true,
-    "noImplicitAny": true,
-  },
+    "noImplicitAny": true
+  }
 }
