@@ -1,0 +1,30 @@
+.block-input {
+  display: flex;
+  flex-direction: column;
+}
+.block-input__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.block-input__label {
+  font-size: 13px;
+  font-weight: 400;
+}
+.block-input__field {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--grey);
+  border: none;
+  height: 20px;
+  text-align: right;
+}
+.block-input__field:focus {
+  outline: none;
+}
+
+.line {
+  margin: 0;
+  color: var(--grey);
+  margin-bottom: 7px;
+}/*# sourceMappingURL=Input.css.map */

@@ -1,0 +1,26 @@
+.block-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 400;
+}
+.block-info__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.block-info__label {
+  font-size: 13px;
+  font-weight: 400;
+}
+.block-info__value {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.line {
+  margin: 0;
+  color: var(--grey);
+  margin-bottom: 7px;
+}/*# sourceMappingURL=UserInfoItem.css.map */

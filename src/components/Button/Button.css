@@ -1,0 +1,11 @@
+.nav-button {
+  display: inline-block;
+  font-size: 13px;
+  font-family: 500;
+  color: var(--primary);
+  text-decoration: none;
+  text-align: center;
+}
+.nav-button:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=Button.css.map */

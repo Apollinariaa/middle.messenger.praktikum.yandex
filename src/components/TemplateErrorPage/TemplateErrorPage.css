@@ -1,0 +1,11 @@
+.error-page {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+.error-page__title {
+  margin-bottom: 7px;
+}
+.error-page__comment {
+  margin-bottom: 28px;
+}/*# sourceMappingURL=TemplateErrorPage.css.map */

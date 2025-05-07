@@ -7,14 +7,26 @@
     "dev": "vite",
     "start": "vite build && vite preview --port 3000",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:css": "stylelint '**/*.css'",
+    "lint:fix": "eslint . --fix",
+    "types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
     "sass": "^1.86.3",
+    "stylelint": "^16.19.1",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   },
   "dependencies": {
+    "handlebars": "^4.7.8",
+    "stylelint-scss": "^6.11.1",
     "vite-plugin-handlebars": "^2.0.0"
   },
   "engines": {
