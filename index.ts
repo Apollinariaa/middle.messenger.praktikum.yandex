@@ -6,7 +6,7 @@ import { renderNotFoundPage } from './src/pages/404/index';
 import { renderChangeDataPage } from './src/pages/profile/changeData/index';
 import  { renderChangePasswordPage } from './src/pages/profile/changePassword/index';
 import { renderRegistrationPage } from './src/pages/registration/index';
-import { renderProfilePage } from './src/pages/profile/Profile';
+import { renderProfilePage } from './src/pages/profile/profile/index';
 import './styles.scss';
 
 const app = document.getElementById('app');
