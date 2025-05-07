@@ -21,5 +21,6 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true
-  }
+  },
+  "include": ["src", "src/utils/renderDOM.ts"]
 }
