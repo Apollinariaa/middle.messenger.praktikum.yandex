@@ -22,14 +22,14 @@ export default class ChangePasswordPage extends Page {
             code: 'oldPassword',
             name: 'Старый пароль',
             type: 'password',
-            value: '•••••••••••',
+            value: '••••••••••',
         })
 
         const inputNewPassword = new Input('div', {
             code: 'newPassword',
             name: 'Новый пароль',
             type: 'password',
-            value: '•••••••••••',
+            value: '••••••••••',
         })
 
         const inputForm = [
