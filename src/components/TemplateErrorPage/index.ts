@@ -1,5 +1,5 @@
-import Block from "../../services/Block";
-import { template } from "./TemplateErrorPage";
+import Block from '../../services/Block';
+import { template } from './TemplateErrorPage';
 import './TemplateErrorPage.scss';
 
 export default class TemplateErrorPage extends Block {

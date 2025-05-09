@@ -42,6 +42,11 @@ export default class ProfilePage extends Page {
             name: 'Имя',
         })
 
+        const inputDisplayName = new UserInfoItem('div', {
+            value: 'display_name',
+            name: 'Ник',
+        })
+
         const inputSecondName = new UserInfoItem('div', {
             value: 'second_name',
             name: 'Фамилия',
@@ -61,6 +66,7 @@ export default class ProfilePage extends Page {
             inputLogin,
             inputEmail,
             inputFirstName,
+            inputDisplayName,
             inputSecondName,
             inputPhone,
             inputPassword
@@ -78,7 +84,7 @@ export default class ProfilePage extends Page {
 
 // Функция для отображения страницы профиля
 export const renderProfilePage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const profilePage = new ProfilePage();
     profilePage.render();
 };

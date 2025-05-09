@@ -1,5 +1,5 @@
-import Block from "../../services/Block";
-import { template } from "./Registration";
+import Block from '../../services/Block';
+import { template } from './Registration';
 
 export default class RegistrationTemplatePage extends Block {
     render() {

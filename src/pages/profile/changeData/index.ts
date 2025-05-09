@@ -1,7 +1,7 @@
 import Button from '../../../components/Button/index';
 import SubmitButton from '../../../components/SubmitButton/index';
 import Input from '../../../components/Input/index';
-import ChangeDataTemplate from "./ChangeDataTemplate";
+import ChangeDataTemplate from './ChangeDataTemplate';
 import ChangeDataController from './ChangeDataController';
 import Page from '../../../services/Page';
 
@@ -14,7 +14,6 @@ export default class ChangeDataPage extends Page {
 
         const submitButton = new SubmitButton('button',{
             children: 'Сохранить',
-            attr: { class: 'submit-button', type: 'submit'}
         });
 
         const inputLogin = new Input('div', {
@@ -27,7 +26,7 @@ export default class ChangeDataPage extends Page {
         const inputPassword = new Input('div', {
             code: 'password',
             name: 'Пароль',
-            type: 'text',
+            type: 'password',
             value: '•••••••••••',
         })
 
@@ -36,6 +35,13 @@ export default class ChangeDataPage extends Page {
             name: 'Имя',
             type: 'text',
             value: 'Иван',
+        })
+
+        const inputDisplayName = new Input('div', {
+            code: 'display_name',
+            name: 'Ник',
+            type: 'text',
+            value: 'Иваныч',
         })
 
         const inputSecondName = new Input('div', {
@@ -63,6 +69,7 @@ export default class ChangeDataPage extends Page {
             inputLogin,
             inputEmail,
             inputFirstName,
+            inputDisplayName,
             inputSecondName,
             inputPhone,
             inputPassword
@@ -81,7 +88,7 @@ export default class ChangeDataPage extends Page {
 
 // Функция для страницы изменение данных
 export const renderChangeDataPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const сhangeDataPage = new ChangeDataPage();
     сhangeDataPage.render();
     new ChangeDataController();

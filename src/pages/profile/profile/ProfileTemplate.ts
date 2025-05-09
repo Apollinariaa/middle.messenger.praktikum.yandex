@@ -1,5 +1,5 @@
-import Block from "../../../services/Block";
-import { template } from "./Profile";
+import Block from '../../../services/Block';
+import { template } from './Profile';
 import '../Profile.scss';
 
 export default class ProfileTemplate extends Block {

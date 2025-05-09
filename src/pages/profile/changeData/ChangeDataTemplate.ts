@@ -1,6 +1,6 @@
 
-import Block from "../../../services/Block";
-import { template } from "./ChangeData";
+import Block from '../../../services/Block';
+import { template } from './ChangeData';
 import '../Profile.scss';
 
 export default class ChangeDataTemplate extends Block {

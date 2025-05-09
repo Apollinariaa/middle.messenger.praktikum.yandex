@@ -1,4 +1,4 @@
-import BaseController from "../../services/BaseController";
+import BaseController from '../../services/BaseController';
 
 class RegistrationController extends BaseController {
     constructor() {

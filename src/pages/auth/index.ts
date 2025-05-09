@@ -1,8 +1,8 @@
 import Button from '../../components/Button/index';
 import SubmitButton from '../../components/SubmitButton/index';
 import Input from '../../components/Input/index';
-import Page from "../../services/Page";
-import AuthTemplate from "./AuthTemplate";
+import Page from '../../services/Page';
+import AuthTemplate from './AuthTemplate';
 import AuthPageController from './AuthController';
 
 export default class AuthPage extends Page {
@@ -13,7 +13,7 @@ export default class AuthPage extends Page {
 
         const submitButton = new SubmitButton('button',{
             children: 'Войти',
-            attr: { class: 'style-margin', type: 'submit'},
+            attr: { class: 'style-margin'},
         });
 
         const inputLogin = new Input('div', {
@@ -26,7 +26,7 @@ export default class AuthPage extends Page {
         const inputPassword = new Input('div', {
             code: 'password',
             name: 'Пароль',
-            type: 'text',
+            type: 'password',
             value: '•••••••••••',
         })
 
@@ -45,7 +45,7 @@ export default class AuthPage extends Page {
 
 // Функция для отображения страницы авторизации
 export const renderAuthPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const authPage = new AuthPage();
     authPage.render();
     new AuthPageController();

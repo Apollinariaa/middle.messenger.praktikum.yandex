@@ -2,8 +2,8 @@
 import Button from '../../../components/Button/index';
 import SubmitButton from '../../../components/SubmitButton/index';
 import Input from '../../../components/Input/index';
-import Page from "../../../services/Page";
-import ChangePasswordTemplate from "./ChangePasswordTemplate";
+import Page from '../../../services/Page';
+import ChangePasswordTemplate from './ChangePasswordTemplate';
 import ChangePasswordController from './ChangePasswordController';
 
 export default class ChangePasswordPage extends Page {
@@ -15,7 +15,6 @@ export default class ChangePasswordPage extends Page {
 
         const submitButton = new SubmitButton('button',{
             children: 'Сохранить',
-            attr: { class: 'submit-button', type: 'submit'}
         });
 
         const inputOldPassword = new Input('div', {
@@ -49,7 +48,7 @@ export default class ChangePasswordPage extends Page {
 
 // Функция для отображения страницы изменение пароля
 export const renderChangePasswordPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const changePasswordPage = new ChangePasswordPage();
     changePasswordPage.render();
     new ChangePasswordController();

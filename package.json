@@ -8,9 +8,9 @@
     "start": "vite build && vite preview --port 3000",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:css": "stylelint '**/*.css'",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
+    "lint:css": "stylelint \"src/**/*.scss\"",
+    "lint:fix": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --fix",
     "types": "tsc --noEmit"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "handlebars": "^4.7.8",
     "stylelint-scss": "^6.11.1",
+    "uuid": "^11.1.0",
     "vite-plugin-handlebars": "^2.0.0"
   },
   "engines": {
