@@ -33,12 +33,12 @@ export enum RegexKey {
     DEFAULT = 'default',
 }
 
-export const regexMap = {
+export const regexMap: Record<RegexKey, RegExp> = {
     [RegexKey.LOGIN]: loginRegex,
     [RegexKey.PASSWORD]: passwordRegex,
     [RegexKey.EMAIL]: emailRegex,
     [RegexKey.PHONE]: phoneRegex,
     [RegexKey.FIRST_NAME]: nameRegex,
     [RegexKey.SECOND_NAME]: nameRegex,
-    [RegexKey.DEFAULT]: nonEmptyRegex
+    [RegexKey.DEFAULT]: nonEmptyRegex,
 };

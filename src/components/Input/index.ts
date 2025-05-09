@@ -1,5 +1,5 @@
-import Block from "../../services/Block";
-import { template } from "./Input";
+import Block from '../../services/Block';
+import { template } from './Input';
 import './Input.scss';
 
 export default class Input extends Block {

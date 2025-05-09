@@ -1,4 +1,4 @@
-import { RegexKey, regexMap } from "../utils/regex";
+import { RegexKey, regexMap } from '../utils/regex';
 
 class BaseController {
     public form;
@@ -10,12 +10,12 @@ class BaseController {
 
     initEventListeners() {
         if (this.form) {
-            const inputs = this.form.querySelectorAll('input, textarea, select');
+            const inputs = this.form.querySelectorAll('input');
             inputs.forEach(input => {
                 input.addEventListener('blur',
                 (event) => {
-                    const target = event.target as HTMLInputElement;
-                    this.validateField(input, target.value);
+                    const target = event.target as EventTarget | null;
+                    if (target && target instanceof HTMLInputElement) this.validateField(input, target.value);
                 })
             });
 
@@ -30,12 +30,12 @@ class BaseController {
     }
 
     isValidForm() {
-        const inputs = this.form?.querySelectorAll('input, textarea, select');
+        const inputs = this.form?.querySelectorAll('input');
 
         let isValid = true;
 
         inputs?.forEach(input => {
-            const value = (input as HTMLInputElement | HTMLTextAreaElement).value;
+            const value = (input as HTMLInputElement).value;
 
             const isValidInput = this.validateField(input, value);
             isValid = isValid ? isValidInput : isValid;
@@ -56,7 +56,7 @@ class BaseController {
     }
 
     validateForm(event: string) {
-        const inputs = this.form?.querySelectorAll('input, textarea, select');
+        const inputs = this.form?.querySelectorAll('input');
         let isValid = true;
 
         inputs?.forEach(input => {
@@ -69,12 +69,12 @@ class BaseController {
 
     collectFormData() {
         const formData: {[key: string]: string} = {};
-        const inputs = this.form?.querySelectorAll('input, textarea, select');
+        const inputs = this.form?.querySelectorAll('input');
 
         inputs?.forEach(input => {
             if (input) {
                 const name = input.getAttribute('name') || '';
-                formData[name] = (input as HTMLInputElement | HTMLTextAreaElement).value;
+                formData[name] = (input as HTMLInputElement).value;
             }
         });
 

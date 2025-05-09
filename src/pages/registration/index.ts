@@ -1,8 +1,8 @@
 import Button from '../../components/Button/index';
 import SubmitButton from '../../components/SubmitButton/index';
 import Input from '../../components/Input/index';
-import Page from "../../services/Page";
-import RegistrationTemplate from "./RegistrationTemplate";
+import Page from '../../services/Page';
+import RegistrationTemplate from './RegistrationTemplate';
 import RegistrationPageController from './RegistrationController';
 
 export default class RegistrationPage extends Page {
@@ -13,7 +13,7 @@ export default class RegistrationPage extends Page {
 
         const submitButton = new SubmitButton('button',{
             children: 'Зарегистрироваться',
-            attr: { class: 'style-margin', type: 'submit'}
+            attr: { class: 'style-margin'}
         });
 
         const inputLogin = new Input('div', {
@@ -26,7 +26,7 @@ export default class RegistrationPage extends Page {
         const inputPassword = new Input('div', {
             code: 'password',
             name: 'Пароль',
-            type: 'text',
+            type: 'password',
             value: '•••••••••••',
         })
 
@@ -79,7 +79,7 @@ export default class RegistrationPage extends Page {
 
 // Функция для отображения страницы регистрации
 export const renderRegistrationPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const registrationPage = new RegistrationPage();
     registrationPage.render();
     new RegistrationPageController();

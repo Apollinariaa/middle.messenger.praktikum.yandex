@@ -1,12 +1,12 @@
 import InputMessage from '../../components/InputMessage/index';
-import Page from "../../services/Page";
-import ChatTemplate from "./ChatTemplate";
+import Page from '../../services/Page';
+import ChatTemplate from './ChatTemplate';
 import ChatPageController from './ChatController';
 
 export default class ChatPage extends Page {
     getContent() {
         const inputSearch = new InputMessage('input', {
-            attr: { placeholder: "Поиск", name: 'search'}
+            attr: { placeholder: 'Поиск', name: 'search'}
         })
 
         const inputMessage = new InputMessage('input', {attr: {name: 'message'}})
@@ -25,7 +25,7 @@ export default class ChatPage extends Page {
 
 // Функция для отображения страницы чата
 export const renderChatPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const authPage = new ChatPage();
     authPage.render();
     new ChatPageController();

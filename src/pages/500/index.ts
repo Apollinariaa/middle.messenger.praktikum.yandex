@@ -28,7 +28,7 @@ export default class ServerErrorPage extends Page {
 
 // Функция для страницы 500
 export const renderServerErrorPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const serverErrorPage = new ServerErrorPage();
     serverErrorPage.render();
 };

@@ -1,56 +1,58 @@
-export const  METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    DELETE: 'DELETE',
-};
-
-interface Options {
-    timeout: number;
-    method: string;
-    data: Record<string, unknown>
-    headers: Record<string, string>;
+export enum METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
 }
 
-function queryStringify(data: Record<string, unknown>): string {
+export type HTTPMethod = <R = unknown>(
+  url: string,
+  options?: RequestOptions
+) => Promise<R>;
+
+export interface RequestOptions {
+    timeout?: number;
+    method?: METHODS;
+    data?: Record<string, string>
+    headers?: Record<string, string>;
+}
+
+function queryStringify(data: Record<string, string>): string {
     if (typeof data !== 'object') {
 		throw new Error('Data must be object');
 	}
 
     const keys = Object.keys(data);
     return keys.reduce((result, key, index) => {
-        return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+        const query = `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`;
+        return `${result}${query}${index < keys.length - 1 ? '&' : ''}`;
     }, '?');
 }
 
 class HTTPTransport {
-    get = ({url, options}: {url: string, options: Options}) => {
-        return this.request({url, options: {...options, method: METHODS.GET}});
-    };
+    private createMethod(method: METHODS): HTTPMethod {
+        return (url, options = {}) => this.request(url, { ...options, method });
+    }
+    
+    get = this.createMethod(METHODS.GET);
 
-    post = ({url, options}: {url: string, options: Options}) => {
-        return this.request({url, options: {...options, method: METHODS.POST}});
-    };
+    put = this.createMethod(METHODS.PUT);
 
-    put = ({url, options}: {url: string, options: Options}) => {
-        return this.request({url, options: {...options, method: METHODS.PUT}});
-    };
+    post = this.createMethod(METHODS.POST);
 
-    delete = ({url, options}: {url: string, options: Options}) => {
-        return this.request({url, options: {...options, method: METHODS.DELETE}});
-    };
+    delete = this.createMethod(METHODS.DELETE);
 
-    request = ({url, options}: {url: string, options: Options}) => {
-        const {headers = {}, method, data, timeout} = options;
+    private request<R>(url: string, options: RequestOptions, timeout: number = 5000): Promise<R> {
+        const {headers = {}, method, data} = options;
 
-        return new Promise(function(resolve, reject) {
+        return new Promise<R>(function(resolve, reject) {
             if (!method) {
                     reject('No method');
                     return;
             }
 
             const xhr = new XMLHttpRequest();
-                const isGet = method === METHODS.GET;
+            const isGet = method === METHODS.GET;
 
             xhr.open(
                 method,
@@ -64,7 +66,7 @@ class HTTPTransport {
             });
 
             xhr.onload = function() {
-                resolve(xhr);
+                resolve(xhr as R);
             };
 
             xhr.onabort = reject;

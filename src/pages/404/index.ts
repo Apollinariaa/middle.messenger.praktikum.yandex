@@ -28,7 +28,7 @@ export default class NotFoundPage extends Page {
 
 // Функция для страницы 404
 export const renderNotFoundPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = ``;
+    if (app) app.textContent = '';
     const notFoundPage = new NotFoundPage();
     notFoundPage.render();
 };
