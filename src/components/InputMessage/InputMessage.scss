@@ -1,0 +1,9 @@
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    &:focus {
+        outline: none;
+    }
+}
