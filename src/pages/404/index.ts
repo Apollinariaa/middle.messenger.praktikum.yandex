@@ -1,34 +1,32 @@
-import ErrorPage from '../../components/ErrorPage';
 import TemplateErrorPage from '../../components/TemplateErrorPage';
 import Button from '../../components/Button';
-import Page from '../../services/Page';
+import Block from '../../services/Block';
+import Router from '../../services/router/Router';
+import { RoutesLinks } from '../../utils/regex';
 
-export default class NotFoundPage extends Page {
-    getContent() {
-        const button = new Button('button',{
-            children: 'Вернуться к чату',
-            attr: { class: 'co-co'}
-        }
-        );
+const button = new Button('button',{
+    children: 'Вернуться к чату',
+    events: {
+        click: () => {
+            Router.getInstance().go(RoutesLinks.chats);
+        },
+    }}
+);
 
-        const templateErrorPage = new TemplateErrorPage('div', {
-            attr: { className: 'error-page'},
-            children: button,
-            code: '404',
-            comment: 'Ты не туда попал'}
-        );
+const templateErrorPage = new TemplateErrorPage('div', {
+    attr: { className: 'error-page'},
+    children: button,
+    code: '404',
+    comment: 'Ты не туда попал'}
+);
 
-        const notFoundPage = new ErrorPage('main',{
+export default class NotFoundPage extends Block {
+    constructor() {
+        super('main', {
             children: templateErrorPage,
         });
-
-        return notFoundPage;
-    }
-}
-
-// Функция для страницы 404
-export const renderNotFoundPage = (app: HTMLElement | null) => {
-    if (app) app.textContent = '';
-    const notFoundPage = new NotFoundPage();
-    notFoundPage.render();
+    };
+    render() {
+        return this.compile('{{{children}}}');
+    };
 };

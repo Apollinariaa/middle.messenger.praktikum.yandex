@@ -13,27 +13,31 @@ export type HTTPMethod = <R = unknown>(
 export interface RequestOptions {
     timeout?: number;
     method?: METHODS;
-    data?: Record<string, string>
+    data?:  Record<string, unknown>;
     headers?: Record<string, string>;
-}
+};
 
-function queryStringify(data: Record<string, string>): string {
-    if (typeof data !== 'object') {
+const queryStringify = (data: Record<string, unknown>): string => {
+    if (typeof data !== 'object' || data === null) {
 		throw new Error('Data must be object');
 	}
-
     const keys = Object.keys(data);
     return keys.reduce((result, key, index) => {
-        const query = `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`;
-        return `${result}${query}${index < keys.length - 1 ? '&' : ''}`;
+        const encodedKey = encodeURIComponent(key);
+        const encodedValue = encodeURIComponent(String(data[key]));
+        return `${result}${encodedKey}=${encodedValue}${
+        index < keys.length - 1 ? '&' : ''
+        }`;
     }, '?');
-}
+};
 
 class HTTPTransport {
-    private createMethod(method: METHODS): HTTPMethod {
-        return (url, options = {}) => this.request(url, { ...options, method });
-    }
-    
+    private createMethod = (method: METHODS): HTTPMethod => {
+        return (url, options = {}) => {
+            return this.request(url, { ...options, method });
+        };
+    };
+
     get = this.createMethod(METHODS.GET);
 
     put = this.createMethod(METHODS.PUT);
@@ -57,8 +61,8 @@ class HTTPTransport {
             xhr.open(
                 method,
                 isGet && !!data
-                    ? `${url}${queryStringify(data)}`
-                    : url,
+                ? `${url}${queryStringify(data)}`
+                : url
             );
 
             Object.keys(headers).forEach(key => {
@@ -66,7 +70,23 @@ class HTTPTransport {
             });
 
             xhr.onload = function() {
-                resolve(xhr as R);
+                try {
+                    const contentType = xhr.getResponseHeader('Content-Type') || '';
+
+                    let response: unknown;
+                    if (contentType.includes('application/json')) {
+                        response = JSON.parse(xhr.responseText);
+                    } else if (contentType.includes('text')) {
+                        response = xhr.responseText;
+                    } else {
+                        response = xhr.response;
+                    }
+
+                    resolve(response as R);
+                    } catch (error) {
+                        console.log(error);
+                        reject(new Error('Failed to process response'));
+                    }
             };
 
             xhr.onabort = reject;
@@ -74,14 +94,19 @@ class HTTPTransport {
 
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
-
+            xhr.withCredentials = true;
+            
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(queryStringify(data));
+                if (data instanceof FormData) {
+                    xhr.send(data);
+                } else {
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
     };
 }
 
-export default HTTPTransport;
+export default new HTTPTransport();

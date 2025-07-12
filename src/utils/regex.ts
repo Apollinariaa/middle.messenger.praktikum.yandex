@@ -42,3 +42,25 @@ export const regexMap: Record<RegexKey, RegExp> = {
     [RegexKey.SECOND_NAME]: nameRegex,
     [RegexKey.DEFAULT]: nonEmptyRegex,
 };
+
+export enum PagesNames {
+  login = 'login',
+  chats = 'chats',
+  registration = 'registration',
+  profile = 'profile',
+  changeData = 'changeData',
+  changePassword = 'changePassword',
+  notFound = 'notFound',
+  serverError = 'serverError',
+}
+
+export const RoutesLinks: Record<PagesNames, string> = {
+  [PagesNames.login]: '/',
+  [PagesNames.profile]: '/profile',
+  [PagesNames.changeData]: '/settings',
+  [PagesNames.changePassword]: '/change-password',
+  [PagesNames.registration]: '/sign-up',
+  [PagesNames.chats]: '/messenger',
+  [PagesNames.notFound]: '/404',
+  [PagesNames.serverError]: '/500',
+};

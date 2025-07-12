@@ -7,7 +7,7 @@
 }
 
 .style-margin {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 .validate_error_input {
@@ -44,6 +44,10 @@
         gap: 14px;
         margin-bottom: 21px;
     }
+    &__error-message {
+      color: red;
+      display: none;
+    }
 }
 
 button {
@@ -56,6 +60,7 @@ button {
   --black: #000000;
   --while: #FFFFFF;
   --primary: #367EDB;
+  --primary-chat: #9fbce1;
   --primary-hover: #3369F3;
   --grey: #999999;
   --red: #ff0000;
