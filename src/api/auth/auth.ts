@@ -21,7 +21,7 @@ export const infoUser = async () => {
 export const loginUser = async (formData: SignInRequest) => {
     await AuthAPI.singin(formData).then(async () => {
         await infoUser();
-        Router.getInstance().go(RoutesLinks.profile)
+        Router.getInstance().go(RoutesLinks.chats)
     });
 };
 
