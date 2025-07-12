@@ -7,3 +7,4 @@ export default class UserInfoItem extends Block {
         return this.compile(template, {class: 'block-info'});
     }
 };
+
