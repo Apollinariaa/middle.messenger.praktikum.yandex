@@ -6,4 +6,4 @@ export default class ChatItem extends Block {
     render() {
         return this.compile(template, { attr: {class: 'chat-info__wrapper'}});
     }
-}
+};

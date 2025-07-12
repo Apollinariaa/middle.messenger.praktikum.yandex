@@ -41,7 +41,7 @@ class Router {
     if (!isAuth && !isPathAuth) {
       this.go(RoutesLinks.login);
     } else if (isAuth && isPathAuth) {
-      this.go(RoutesLinks.profile);
+      this.go(RoutesLinks.chats);
     } else {
       this._onRoute(pathname);
     }
