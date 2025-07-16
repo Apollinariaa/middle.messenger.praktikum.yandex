@@ -4,7 +4,7 @@ export const template = `
 
 <form class="profile-block__form" id="change_data_form">
     <div class="profile-block__avatar-block">
-        <input type="file" name="{{{code_img}}}" class="block-input__field" accept="image/*">
+        <input type="file" name="{{{code_img}}}" class="block-input__field"  value="{{value_avatar_src}}" accept="image/*">
     </div>
     <div class="profile-block__input-form">
         {{{input_form}}}

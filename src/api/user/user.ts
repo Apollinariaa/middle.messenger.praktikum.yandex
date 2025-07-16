@@ -7,37 +7,36 @@ import { ChangeUserPasswordRequest, ChangeUserProfileRequest, UserInfo } from '.
 import UserAPI from './userApi';
 
 export const changeUserData = async (formData: ChangeUserProfileRequest) => {
-    if (Object.keys(formData).length !== 0) {
-        await UserAPI.changeUserData(formData).then(async () => {
-            await infoUser();
-            Router.getInstance().go(RoutesLinks.profile)
-        }).catch((error) => {
-            throw error;
-        });
-    }
-
-
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
     const file = fileInput.files?.[0];
 
-    if (!file) {
-        throw new Error('Файл не выбран');
+    if (file) {
+        await UserAPI.changeUserAvatar(file).then(async (user) => {
+            if (Object.keys(formData).length === 0) {
+                store.set({ user: user as UserInfo });
+                Router.getInstance().go(RoutesLinks.chats)
+            }
+        }).catch((error) => {
+            throw new Error(error);
+        });
     }
 
-    await UserAPI.changeUserAvatar(file).then(async (user) => {
-        store.set({ user: user as UserInfo });
-        Router.getInstance().go(RoutesLinks.profile)
-    }).catch((error) => {
-        throw error;
-    });
+    if (Object.keys(formData).length !== 0) {
+        await UserAPI.changeUserData(formData).then(async () => {
+            await infoUser();
+            Router.getInstance().go(RoutesLinks.chats)
+        }).catch((error) => {
+            throw new Error(error);
+        });
+    }
 };
 
 export const changeUserPassword = async (formData: ChangeUserPasswordRequest) => {
     await UserAPI.changeUserPassword(formData).then(async () => {
         console.log('changeUserPassword');
         await infoUser();
-        Router.getInstance().go(RoutesLinks.profile)
+        Router.getInstance().go(RoutesLinks.chats)
     }).catch((error) => {
-        throw error;
+        throw new Error(error);
     });
 };

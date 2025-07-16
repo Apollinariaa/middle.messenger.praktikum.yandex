@@ -1,6 +1,7 @@
 import Store from '../../services/Store';
 import Router from '../../services/router/Router';
 import { RoutesLinks } from '../../utils/regex';
+import { getChat } from '../chat/chat';
 import { UserInfo } from '../user/types';
 import AuthAPI from './authApi';
 import { SignInRequest, SignUpRequest } from './types';
@@ -21,6 +22,7 @@ export const infoUser = async () => {
 export const loginUser = async (formData: SignInRequest) => {
     await AuthAPI.singin(formData).then(async () => {
         await infoUser();
+        await getChat();
         Router.getInstance().go(RoutesLinks.chats)
     });
 };
@@ -30,7 +32,7 @@ export const registrationUser = async (formData: SignUpRequest) => {
         await infoUser();
         Router.getInstance().go(RoutesLinks.chats);
     }).catch((error) => {
-        throw error;
+        throw new Error(error);
     });
 
 };
