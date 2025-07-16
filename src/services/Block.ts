@@ -86,24 +86,20 @@ abstract class Block {
     return { children, props, lists };
   }
 
-  public getProps(): TProps {
-    return this._props;
-  }
-
   compile(template: string, props?: TProps) {
-    const propsAndStubs = typeof(props) == 'undefined'
-      ? {...this._props} : {
-        ...props,
-        ...this._props,
-        attr: {
-          ...props?.attr,
-          ...this._props?.attr,
-          ...(props?.attr?.class && this._props?.attr?.class &&
-          {class: props.attr?.class + ' ' + this._props?.attr?.class}),
-        },
-      };
+    const newProps = {
+      ...this._props,
+      attr: {
+        ...props?.attr,
+        ...this._props?.attr,
+        ...(props?.attr?.class && this._props?.attr?.class &&
+        {class: props.attr?.class + ' ' + this._props?.attr?.class}),
+      },
+    };
 
-    this._props = propsAndStubs;
+    this._props = newProps;
+
+    const propsAndStubs = typeof(props) === 'undefined' ? {...this._props} : {...newProps} as Record<string, unknown>;;
 
     Object.entries(this._children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="child_${child._id}"></div>`
@@ -191,14 +187,17 @@ abstract class Block {
 
     if (Object.values(children).length) {
       Object.assign(this._children, children);
+      this._setUpdate = true;
     }
 
     if (Object.values(props).length) {
       Object.assign(this._props, props);
+      this._setUpdate = true;
     }
 
     if (Object.values(lists).length) {
       Object.assign(this._lists, lists);
+      this._setUpdate = true;
     }
 
     if (this._setUpdate) {

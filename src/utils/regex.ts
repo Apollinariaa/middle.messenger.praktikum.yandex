@@ -30,7 +30,10 @@ export enum RegexKey {
     PHONE = 'phone',
     FIRST_NAME = 'first_name',
     SECOND_NAME = 'second_name',
+    DISPLAY_NAME = 'display_name',
     DEFAULT = 'default',
+    NEW_PASSWORD = 'newPassword',
+    OLD_PASSWORD = 'oldPassword',
 }
 
 export const regexMap: Record<RegexKey, RegExp> = {
@@ -41,6 +44,9 @@ export const regexMap: Record<RegexKey, RegExp> = {
     [RegexKey.FIRST_NAME]: nameRegex,
     [RegexKey.SECOND_NAME]: nameRegex,
     [RegexKey.DEFAULT]: nonEmptyRegex,
+    [RegexKey.NEW_PASSWORD]: passwordRegex,
+    [RegexKey.OLD_PASSWORD]: passwordRegex,
+    [RegexKey.DISPLAY_NAME]: loginRegex
 };
 
 export enum PagesNames {

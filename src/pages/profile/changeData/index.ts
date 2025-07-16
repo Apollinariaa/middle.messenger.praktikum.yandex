@@ -7,6 +7,7 @@ import { collectFormData, validateForOptionalFieldsInputs, validateForm } from '
 import { changeUserData } from '../../../api/user/user';
 import { RoutesLinks } from '../../../utils/regex';
 import Router from '../../../services/router/Router';
+import Store from '../../../services/Store';
 
 const button = new Button('button',{
     children: 'Вернуться назад',
@@ -42,6 +43,7 @@ const inputLogin = new Input('div', {
     code: 'login',
     name: 'Логин',
     type: 'text',
+    value: Store.getState().user?.login || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -54,6 +56,7 @@ const inputFirstName = new Input('div', {
     code: 'first_name',
     name: 'Имя',
     type: 'text',
+    value: Store.getState().user?.first_name || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -66,6 +69,7 @@ const inputDisplayName = new Input('div', {
     code: 'display_name',
     name: 'Ник',
     type: 'text',
+    value: Store.getState().user?.display_name || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -78,6 +82,7 @@ const inputSecondName = new Input('div', {
     code: 'second_name',
     name: 'Фамилия',
     type: 'text',
+    value: Store.getState().user?.second_name || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -90,6 +95,7 @@ const inputPhone = new Input('div', {
     code: 'phone',
     name: 'Телефон',
     type: 'tel',
+    value: Store.getState().user?.phone || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -102,6 +108,7 @@ const inputEmail = new Input('div', {
     code: 'email',
     name: 'Почта',
     type: 'text',
+    value: Store.getState().user?.email || '',
     events: {
         focusout: (event: Event) => {
             const target = event.target as HTMLInputElement;
@@ -110,24 +117,54 @@ const inputEmail = new Input('div', {
     }
 })
 
-const inputForm = [
-    inputLogin,
-    inputEmail,
-    inputFirstName,
-    inputDisplayName,
-    inputSecondName,
-    inputPhone,
-];
-
 export default class ChangeDataPage extends Block {
+    private login: Input;
+    private first_name: Input;
+    private display_name: Input;
+    private second_name: Input;
+    private phone: Input;
+    private email: Input;
+    private value_avatar_src: string;
+
     constructor() {
-        super('main', {
-            input_form: inputForm,
+        super('main', {});
+        this.login = inputLogin;
+        this.first_name = inputFirstName;
+        this.display_name = inputDisplayName;
+        this.second_name = inputSecondName;
+        this.phone = inputPhone;
+        this.email = inputEmail;
+        this.value_avatar_src = Store.getState().user?.avatar || '';
+
+        Store.on('update', this.updateProps.bind(this));
+
+        this.setProps({
+            input_form: [
+                this.login,
+                this.first_name,
+                this.display_name,
+                this.second_name,
+                this.phone,
+                this.email
+            ],
             back_button: button,
             submit_button: submitButton,
-            code_img: 'avatar'
+            code_img: 'avatar',
+            value_avatar_src: this.value_avatar_src,
         });
     };
+    updateProps(): void {
+        const user = Store.getState().user;
+        if (!user) return;
+
+        this.login.setProps({ value: user.login });
+        this.first_name.setProps({ value: user.first_name });
+        this.display_name.setProps({ value: user.display_name });
+        this.second_name.setProps({ value: user.second_name });
+        this.phone.setProps({ value: user.phone });
+        this.email.setProps({ value: user.email });
+        this.value_avatar_src = user.avatar;
+    }
     render() {
         return this.compile(template, {attr: {class: 'profile-block block-blue'}});
     }
