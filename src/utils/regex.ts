@@ -30,7 +30,10 @@ export enum RegexKey {
     PHONE = 'phone',
     FIRST_NAME = 'first_name',
     SECOND_NAME = 'second_name',
+    DISPLAY_NAME = 'display_name',
     DEFAULT = 'default',
+    NEW_PASSWORD = 'newPassword',
+    OLD_PASSWORD = 'oldPassword',
 }
 
 export const regexMap: Record<RegexKey, RegExp> = {
@@ -41,4 +44,29 @@ export const regexMap: Record<RegexKey, RegExp> = {
     [RegexKey.FIRST_NAME]: nameRegex,
     [RegexKey.SECOND_NAME]: nameRegex,
     [RegexKey.DEFAULT]: nonEmptyRegex,
+    [RegexKey.NEW_PASSWORD]: passwordRegex,
+    [RegexKey.OLD_PASSWORD]: passwordRegex,
+    [RegexKey.DISPLAY_NAME]: loginRegex
+};
+
+export enum PagesNames {
+  login = 'login',
+  chats = 'chats',
+  registration = 'registration',
+  profile = 'profile',
+  changeData = 'changeData',
+  changePassword = 'changePassword',
+  notFound = 'notFound',
+  serverError = 'serverError',
+}
+
+export const RoutesLinks: Record<PagesNames, string> = {
+  [PagesNames.login]: '/',
+  [PagesNames.profile]: '/profile',
+  [PagesNames.changeData]: '/settings',
+  [PagesNames.changePassword]: '/change-password',
+  [PagesNames.registration]: '/sign-up',
+  [PagesNames.chats]: '/messenger',
+  [PagesNames.notFound]: '/404',
+  [PagesNames.serverError]: '/500',
 };

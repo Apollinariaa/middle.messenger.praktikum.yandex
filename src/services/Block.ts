@@ -23,8 +23,9 @@ abstract class Block {
   private _element: HTMLElement | null = null;
   private _lists: TLists = {};
   private _meta: { tagName: string; props: TProps } | null = null;
-  private _props: TProps;
+  protected _props: TProps;
   private _children: TChildren;
+  private _setUpdate: boolean;
 
   private _id: string;
 
@@ -50,6 +51,7 @@ abstract class Block {
     this._props = this._makePropsProxy(props) as TProps;
     this._lists = this._makePropsProxy(lists) as TLists;
     this._children = this._makePropsProxy(children) as TChildren;
+    this._setUpdate = false;
 
     this.eventBus = () => eventBus;
 
@@ -84,21 +86,20 @@ abstract class Block {
     return { children, props, lists };
   }
 
-
   compile(template: string, props?: TProps) {
-    const propsAndStubs = typeof(props) == 'undefined'
-      ? {...this._props} : {
-        ...props,
-        ...this._props,
-        attr: {
-          ...props?.attr,
-          ...this._props?.attr,
-          ...(props?.attr?.class && this._props?.attr?.class &&
-          {class: props.attr?.class + ' ' + this._props?.attr?.class}),
-        },
-      };
+    const newProps = {
+      ...this._props,
+      attr: {
+        ...props?.attr,
+        ...this._props?.attr,
+        ...(props?.attr?.class && this._props?.attr?.class &&
+        {class: props.attr?.class + ' ' + this._props?.attr?.class}),
+      },
+    };
 
-    this._props = propsAndStubs;
+    this._props = newProps;
+
+    const propsAndStubs = typeof(props) === 'undefined' ? {...this._props} : {...newProps} as Record<string, unknown>;;
 
     Object.entries(this._children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="child_${child._id}"></div>`
@@ -180,19 +181,28 @@ abstract class Block {
     if (!newProps) {
       return;
     }
+    this._setUpdate = false;
 
     const {children, props, lists } = this.getChildren(newProps);
 
     if (Object.values(children).length) {
       Object.assign(this._children, children);
+      this._setUpdate = true;
     }
 
     if (Object.values(props).length) {
       Object.assign(this._props, props);
+      this._setUpdate = true;
     }
 
     if (Object.values(lists).length) {
       Object.assign(this._lists, lists);
+      this._setUpdate = true;
+    }
+
+    if (this._setUpdate) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+      this._setUpdate = false;
     }
   };
 
@@ -231,7 +241,7 @@ abstract class Block {
             const eventHandler = events[eventName];
 
             if (typeof eventHandler === 'function') {
-                this._element?.addEventListener(eventName, eventHandler);
+              this._element?.addEventListener(eventName, eventHandler);
             }
         });
     }
@@ -261,12 +271,13 @@ abstract class Block {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop: string, value: unknown) {
-        target[prop] = value;
+      set(target, prop: string, value) {
+        if (target[prop] !== value) {
+          target[prop] = value;
+          self._setUpdate = true;
+        }
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
-
       },
 
       deleteProperty() {
@@ -274,25 +285,25 @@ abstract class Block {
       },
 
     });
-  }
+  };
 
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
-  }
+  };
 
   show() {
     const content = this.getContent();
     if (content) {
-      content.style.display = 'block';
+      content.style.display = 'flex';
     }
-  }
+  };
 
   hide() {
     const content = this.getContent();
     if (content) {
       content.style.display = 'none';
     }
-  }
+  };
 }
 
 export default Block;

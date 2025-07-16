@@ -6,4 +6,4 @@ export default class UserInfoItem extends Block {
     render() {
         return this.compile(template, {class: 'block-info'});
     }
-}
+};

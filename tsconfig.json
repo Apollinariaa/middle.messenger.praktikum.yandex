@@ -17,10 +17,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": "dist",
-    "declaration": false,
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true
   },
-  "include": ["src", "src/utils/renderDOM.ts"]
+  "include": ["src"]
 }
