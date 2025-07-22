@@ -5,19 +5,21 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "sourceMap": true,
+
     "strict": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "outDir": "dist",
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "noImplicitAny": true
   },
   "include": ["src", "mochaSetup.ts"]
 }
