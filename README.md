@@ -1,4 +1,4 @@
-### Спринт 3. Chat message
+### Спринт 4. Chat message
 
 Ссылка на figma https://www.figma.com/design/5LV35IFiPGs24uUVHaBhRN/Untitled?node-id=0-1&t=peGm1fG8QDFxlAMV-1
 
@@ -32,3 +32,8 @@
 В рамках 3 спринта было добавлено:
 - Добавлены WebSocket, Store, Router
 - Добавлен api, работа с чатами, авторизация выпонлены в полном обьеме
+
+В рамках 4 спринта было добавлено:
+- Добавлены тесты для роутера, компонента и модуля HTTP
+- Настроен pre-commit
+- Произведен аудит пакетов
