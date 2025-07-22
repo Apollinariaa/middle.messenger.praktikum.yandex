@@ -95,7 +95,7 @@ class HTTPTransport {
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
             xhr.withCredentials = true;
-            
+
             if (isGet || !data) {
                 xhr.send();
             } else {

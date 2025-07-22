@@ -1,6 +1,6 @@
-import Block from '../../services/Block';
-import { template } from './TemplateErrorPage';
-import './TemplateErrorPage.scss';
+import Block from '../../services/Block.ts';
+import { template } from './TemplateErrorPage.ts';
+//import './TemplateErrorPage.scss';
 
 export default class TemplateErrorPage extends Block {
     render() {

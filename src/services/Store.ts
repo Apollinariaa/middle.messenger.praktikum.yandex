@@ -1,6 +1,6 @@
 import { GetChatResponse } from '../api/chat/types';
 import { UserInfo } from '../api/user/types';
-import EventBus from './EventBus';
+import EventBus from './EventBus.ts';
 
 interface StoreProps {
     user?: UserInfo | null;

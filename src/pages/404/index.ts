@@ -1,8 +1,8 @@
-import TemplateErrorPage from '../../components/TemplateErrorPage';
-import Button from '../../components/Button';
-import Block from '../../services/Block';
-import Router from '../../services/router/Router';
-import { RoutesLinks } from '../../utils/regex';
+import TemplateErrorPage from '../../components/TemplateErrorPage/index.ts';
+import Button from '../../components/Button/index.ts';
+import Block from '../../services/Block.ts';
+import Router from '../../services/router/Router.ts';
+import { RoutesLinks } from '../../utils/regex.ts';
 
 const button = new Button('button',{
     children: 'Вернуться к чату',
