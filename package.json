@@ -11,16 +11,37 @@
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:fix": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --fix",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "test": "mocha",
+    "prepare": "husky && husky install",
+    "pre-commit": "npm run test && npm run lint:css && npm run lint"
+  },
+  "lint-staged": {
+    "*.ts": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "*.{css, scss}": "stylelint \"src/**/*.scss\""
   },
   "devDependencies": {
+    "@types/chai": "^5.2.2",
+    "@types/chai-as-promised": "^8.0.2",
+    "@types/ignore-styles": "^5.0.3",
+    "@types/jsdom": "^21.1.7",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.15.3",
+    "@types/sinon": "^17.0.4",
     "@typescript-eslint/eslint-plugin": "^8.30.1",
     "@typescript-eslint/parser": "^8.30.1",
+    "chai": "^5.2.1",
+    "chai-as-promised": "^8.0.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
+    "husky": "^8.0.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^26.1.0",
+    "mocha": "^11.7.1",
     "sass": "^1.86.3",
+    "sinon": "^21.0.0",
     "stylelint": "^16.19.1",
+    "ts-node": "^10.9.2",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   },
@@ -28,7 +49,7 @@
     "handlebars": "^4.7.8",
     "stylelint-scss": "^6.11.1",
     "uuid": "^11.1.0",
-    "vite-plugin-handlebars": "^2.0.0"
+    "vite-plugin-handlebars": "^1.5.0"
   },
   "engines": {
     "node": "22.2.0"
