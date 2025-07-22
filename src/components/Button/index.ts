@@ -1,5 +1,5 @@
 import Block from '../../services/Block.ts';
-//import './Button.scss';
+import './Button.scss';
 
 export default class Button extends Block {
     render() {
