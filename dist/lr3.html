@@ -7,14 +7,14 @@
 <body>
     <a-scene>
         <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere position="0 3.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-sphere position="5 -1.5 5" radius="1.25" color="#EF2D5E"></a-sphere>
         <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
         <a-plane position="0 0 -3" rotation="-90 0 0" width="3" height="3" color="#b82eea"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
         <a-assets>
             <a-asset-item id="model" src="./model.glb"></a-asset-item>
         </a-assets>
-        <a-entity position="5 -1.5 5" gltf-model="#model" modify-materials></a-entity>
+        <a-entity position="0 3.5 -5" gltf-model="#model" modify-materials></a-entity>
     </a-scene>
 </body>
 
