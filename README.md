@@ -1,4 +1,5 @@
-### Спринт 3. Chat message
+### Chat message. Чат сообщений. 
+Данный проект был выполнен в рамках 4 спринтов на курсе от Яндекс практикума "Мидл фронтенд разработчик". 
 
 Ссылка на figma https://www.figma.com/design/5LV35IFiPGs24uUVHaBhRN/Untitled?node-id=0-1&t=peGm1fG8QDFxlAMV-1
 
