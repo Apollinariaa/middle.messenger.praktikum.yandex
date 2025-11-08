@@ -1,7 +1,7 @@
-import NotFoundPage from '../../pages/404';
-import { RoutesLinks } from '../../utils/regex';
-import Block from '../Block';
-import { Route } from './Route';
+import NotFoundPage from '../../pages/404/index.ts';
+import { RoutesLinks } from '../../utils/regex.ts';
+import Block from '../Block.ts';
+import { Route } from './Route.ts';
 
 // отвечает только за изменение URL и вызывает Route;
 class Router {
